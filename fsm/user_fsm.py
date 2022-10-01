@@ -1,9 +1,11 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
-class FIO(StatesGroup):
+class Usr(StatesGroup):
     fio = State()
-    out_fio = State()
+    f_name = State()
+    l_name = State()
+    phone = State()
 
 
 

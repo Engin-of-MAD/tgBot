@@ -1,8 +1,5 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
-class MenuCtrl(StatesGroup):
-    menu_sch = State()
-    menu_aud = State()
-    menu_info = State()
+class Menu(StatesGroup):
     menu_switch = State()

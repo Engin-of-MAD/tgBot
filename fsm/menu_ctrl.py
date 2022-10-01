@@ -1,17 +1,38 @@
-from .menu_fsm import MenuCtrl
+from aiogram import types
 
 
-async def menu_level(item: str, lvl_menu=1) -> int:
-    if item == "Расписание занятий":
-        lvl_menu += 1
-        await MenuCtrl.menu_sch.set()
-        return lvl_menu
+class MenuCtrl:
+    curr_lvl = 1
 
-    elif item == "Репетиционные Аудитории":
-        lvl_menu += 1
-        await MenuCtrl.menu_aud.set()
-        return lvl_menu
+    async def menu_level(self, msg: types.Message) -> int:
+        if msg.text == "Расписание занятий":
+            self.curr_lvl += 1
+            return self.curr_lvl
 
-    elif item == "Info" and lvl_menu == 1:
-        await MenuCtrl.menu_info.set()
-        return lvl_menu
+        elif msg.text == "Репетиционные Аудитории":
+            self.curr_lvl += 1
+            return self.curr_lvl
+
+        elif msg.text == "Info" and self.curr_lvl == 1:
+            await msg.answer("Какая-то инфа 1")
+            return self.curr_lvl
+
+        elif msg.text == "Info" and self.curr_lvl == 2:
+            await msg.answer("Какая-то инфа о меню аудиторий")
+            return self.curr_lvl
+
+        elif msg.text == "Аудитория А":
+            self.curr_lvl += 1
+            return self.curr_lvl
+
+        elif msg.text == "Аудитория B":
+            self.curr_lvl = 1
+            return self.curr_lvl
+
+        elif msg.text == "Назад":
+            self.curr_lvl -= 1
+            return self.curr_lvl
+
+        elif msg.text == "Вернуться в главное меню":
+            self.curr_lvl = 1
+            return self.curr_lvl

@@ -4,7 +4,9 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from configs.config import TOKEN
 from groups.user.user import User
+from mydb.db import MyDB
 
+mydb = MyDB()
 usr = User()
 bot = Bot(token=TOKEN)
 
