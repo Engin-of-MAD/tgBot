@@ -1,6 +1,3 @@
-from src.keyboards.menu_kb.menu_kb import MyKb
-from main import usr
-
 import pymysql.cursors
 from aiogram import types
 
@@ -15,7 +12,7 @@ class MyDB:
                                   user="root")
 
     @staticmethod
-    def _gen_p_col(self, p: list):
+    def _gen_p_col(p: list):
         s = str()
         for i in p:
             s = s + i + ", "
@@ -23,7 +20,7 @@ class MyDB:
         return s
 
     @staticmethod
-    def _gen_p_val(self, p: list):
+    def _gen_p_val(p: list):
         s = str()
         for i in p:
             if type(i) == type(str()):
@@ -33,25 +30,29 @@ class MyDB:
         s = s[:-2]
         return s
 
-#    @classmethod
-#   def check_user_in_stud(cls, msg: types.Message):
-#        curr = cls.db.cursor()
-#       msg_id = msg.message_id
-#        curr.execute("SELECT tg_id FROM users.students")
-#        tg_id = curr.fetchall()
-#        tg_id = list(tg_id)
-#        print(tg_id)
-#       uid = []
-#        for i in tg_id:
-#           uid.append(*i)
-#        print(uid)
-#        for i in uid:
-#            if msg_id == i:
-#                print("Пользователь зарегистрирован")
-#                await msg.answer(text="Пожалуйста выберете пункт меню", reply_markup=await MyKb().main_menu())
-#                break
-#            else:
-#                await msg.answer(text=usr.q_txt[0], reply_markup=await usr.auth_kb())
+    @staticmethod
+    def __gen_uid(tg_id: tuple):
+        tg_id = list(tg_id)
+        uid = []
+        for i in tg_id:
+            uid.append(*i)
+        return uid
+
+    async def check_user_in_db(self, msg: types.Message):
+        curr = self.db.cursor()
+        msg_id = str(msg.from_user.id)
+        curr.execute("SELECT tg_id FROM users.students")
+        tg_id = curr.fetchall()
+        uid = self.__gen_uid(tg_id=tg_id)
+        st = None
+
+        for i in uid:
+            if i == msg_id:
+                st = True
+                break
+            else:
+                st = False
+        return st
 
     @classmethod
     async def insert_to_stud(cls, **kwargs):

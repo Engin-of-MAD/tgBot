@@ -3,6 +3,7 @@ from src.keyboards.inline_kb.call_data import auth_data
 from src.fsm.user_fsm import Usr
 from src.fsm.menu_fsm import Menu
 from src.keyboards.menu_kb.menu_kb import MyKb
+from src.Role.users.user import User
 
 from aiogram.dispatcher import FSMContext
 from aiogram import types
@@ -34,7 +35,7 @@ async def yet_auth_user(call: types.CallbackQuery):
 @dp.message_handler(state=Usr.f_name)
 async def first_name_handler(msg: types.Message, state: FSMContext):
     await state.update_data(f_name=msg.text)
-    await msg.answer(text=usr.q_txt[2])
+    await msg.answer(text=User.q_txt[2])
     await Usr.l_name.set()
 
 #####################################################################
@@ -69,6 +70,8 @@ async def phone_handler(msg: types.Message, state: FSMContext):
     await usr.gen_data()
     mydata = await usr.gen_data()
     await mydb.insert_to_stud(**mydata)
+    await msg.answer(text=User().q_txt[4])
+
     await msg.answer(text="Пожалуйста выберете пункт меню", reply_markup=await MyKb().main_menu())
 
 
