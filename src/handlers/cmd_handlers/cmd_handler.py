@@ -12,11 +12,16 @@ from src.Role.users.user import User
 @dp.message_handler(Command("start"))
 async def cmd_start(msg: types.Message):
     await adm_start(msg)
-    User().set_userdata(msg)
+    User().set_userdata(uid=msg.from_user.id)
     await User().chk_usr(msg)
 
 
 @dp.message_handler(Command("profile"))
 async def profile(msg: types.Message):
-    User().set_userdata(msg)
-    await User().show_profile(msg)
+    usr = User(msg.from_user.id)
+    await usr.show_profile(msg)
+
+
+@dp.message_handler(Command("lessons"))
+async def lessons(msg: types.Message):
+    await User().show_lessons(msg)

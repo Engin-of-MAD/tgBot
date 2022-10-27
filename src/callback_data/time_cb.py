@@ -1,3 +1,3 @@
 from aiogram.utils.callback_data import CallbackData
 
-days_data = CallbackData("week", "day")
+time_data = CallbackData("myTime", "time")
