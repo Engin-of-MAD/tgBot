@@ -1,0 +1,172 @@
+Index: src/inline/inline_menu/sch_menu.py
+===================================================================
+diff --git a/src/inline/inline_menu/sch_menu.py b/src/inline/inline_menu/sch_menu.py
+deleted file mode 100644
+--- a/src/inline/inline_menu/sch_menu.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,17 +0,0 @@
+-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+-
+-inl_btn1 = InlineKeyboardButton("11:00 - 13:00", callback_data='button1')
+-inl_btn2 = InlineKeyboardButton("13:00 - 15:00", callback_data='button2')
+-inl_btn3 = InlineKeyboardButton("15:00 - 17:00", callback_data='button3')
+-inl_btn4 = InlineKeyboardButton("17:00 - 19:00", callback_data='button4')
+-inl_btn5 = InlineKeyboardButton("19:00 - 21:00", callback_data='button5')
+-
+-
+-async def sch_menu():
+-    sch_kb = InlineKeyboardMarkup()
+-    sch_kb.add(inl_btn1)
+-    sch_kb.add(inl_btn2)
+-    sch_kb.add(inl_btn3)
+-    sch_kb.add(inl_btn4)
+-    sch_kb.add(inl_btn5)
+-    return sch_kb
+Index: src/inline/call_data.py
+===================================================================
+diff --git a/src/inline/call_data.py b/src/inline/call_data.py
+deleted file mode 100644
+--- a/src/inline/call_data.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,6 +0,0 @@
+-from aiogram.utils.callback_data import CallbackData
+-
+-
+-
+-auth_data = CallbackData("auth", "yn")
+-fio_data = CallbackData("fio", "yn")
+\ No newline at end of file
+Index: src/keyboards/menu_kb/di_kb.py
+===================================================================
+diff --git a/src/keyboards/menu_kb/di_kb.py b/src/keyboards/menu_kb/di_kb.py
+deleted file mode 100644
+--- a/src/keyboards/menu_kb/di_kb.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,11 +0,0 @@
+-from aiogram import types
+-from aiogram.utils.callback_data import CallbackData
+-
+-
+-async def yn_kb(cb: CallbackData):
+-    inl_btn_y = types.InlineKeyboardButton(text="Да", callback_data=cb.new(yn="yes"))
+-    inl_btn_n = types.InlineKeyboardButton(text="Нет", callback_data=cb.new(yn="no"))
+-    yn = types.InlineKeyboardMarkup(row_width=1)
+-    yn.add(inl_btn_y)
+-    yn.add(inl_btn_n)
+-    return yn
+Index: src/keyboards/inline_kb/sch_menu.py
+===================================================================
+diff --git a/src/keyboards/inline_kb/sch_menu.py b/src/keyboards/inline_kb/sch_menu.py
+deleted file mode 100644
+--- a/src/keyboards/inline_kb/sch_menu.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,17 +0,0 @@
+-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+-
+-inl_btn1 = InlineKeyboardButton("11:00 - 13:00", callback_data='button1')
+-inl_btn2 = InlineKeyboardButton("13:00 - 15:00", callback_data='button2')
+-inl_btn3 = InlineKeyboardButton("15:00 - 17:00", callback_data='button3')
+-inl_btn4 = InlineKeyboardButton("17:00 - 19:00", callback_data='button4')
+-inl_btn5 = InlineKeyboardButton("19:00 - 21:00", callback_data='button5')
+-
+-
+-async def sch_menu():
+-    sch_kb = InlineKeyboardMarkup()
+-    sch_kb.add(inl_btn1)
+-    sch_kb.add(inl_btn2)
+-    sch_kb.add(inl_btn3)
+-    sch_kb.add(inl_btn4)
+-    sch_kb.add(inl_btn5)
+-    return sch_kb
+Index: src/inline/inline_menu/aud_menu.py
+===================================================================
+diff --git a/src/inline/inline_menu/aud_menu.py b/src/inline/inline_menu/aud_menu.py
+deleted file mode 100644
+--- a/src/inline/inline_menu/aud_menu.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,27 +0,0 @@
+-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+-
+-inl_btn1 = InlineKeyboardButton(text="11:00-12:00", callback_data="btn1")
+-inl_btn2 = InlineKeyboardButton(text="12:00-13:00", callback_data="btn2")
+-inl_btn3 = InlineKeyboardButton(text="13:00-14:00", callback_data="btn3")
+-inl_btn4 = InlineKeyboardButton(text="14:00-15:00", callback_data="btn4")
+-inl_btn5 = InlineKeyboardButton(text="15:00-16:00", callback_data="btn5")
+-inl_btn6 = InlineKeyboardButton(text="16:00-17:00", callback_data="btn6")
+-inl_btn7 = InlineKeyboardButton(text="17:00-18:00", callback_data="btn7")
+-inl_btn8 = InlineKeyboardButton(text="18:00-19:00", callback_data="btn8")
+-inl_btn9 = InlineKeyboardButton(text="19:00-20:00", callback_data="btn8")
+-inl_btn10 = InlineKeyboardButton(text="20:00-21:00", callback_data="btn10")
+-
+-
+-async def aud_menu_kb() -> InlineKeyboardMarkup:
+-    aud_kb = InlineKeyboardMarkup()
+-    aud_kb.add(inl_btn1)
+-    aud_kb.add(inl_btn2)
+-    aud_kb.add(inl_btn3)
+-    aud_kb.add(inl_btn4)
+-    aud_kb.add(inl_btn5)
+-    aud_kb.add(inl_btn6)
+-    aud_kb.add(inl_btn7)
+-    aud_kb.add(inl_btn8)
+-    aud_kb.add(inl_btn9)
+-    aud_kb.add(inl_btn10)
+-    return aud_kb
+Index: src/keyboards/inline_kb/aud_menu.py
+===================================================================
+diff --git a/src/keyboards/inline_kb/aud_menu.py b/src/keyboards/inline_kb/aud_menu.py
+deleted file mode 100644
+--- a/src/keyboards/inline_kb/aud_menu.py	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
++++ /dev/null	(revision 0f9225bb18d05788f95bd11443aa7b0fb0841547)
+@@ -1,27 +0,0 @@
+-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+-
+-inl_btn1 = InlineKeyboardButton(text="11:00-12:00", callback_data="btn1")
+-inl_btn2 = InlineKeyboardButton(text="12:00-13:00", callback_data="btn2")
+-inl_btn3 = InlineKeyboardButton(text="13:00-14:00", callback_data="btn3")
+-inl_btn4 = InlineKeyboardButton(text="14:00-15:00", callback_data="btn4")
+-inl_btn5 = InlineKeyboardButton(text="15:00-16:00", callback_data="btn5")
+-inl_btn6 = InlineKeyboardButton(text="16:00-17:00", callback_data="btn6")
+-inl_btn7 = InlineKeyboardButton(text="17:00-18:00", callback_data="btn7")
+-inl_btn8 = InlineKeyboardButton(text="18:00-19:00", callback_data="btn8")
+-inl_btn9 = InlineKeyboardButton(text="19:00-20:00", callback_data="btn8")
+-inl_btn10 = InlineKeyboardButton(text="20:00-21:00", callback_data="btn10")
+-
+-
+-async def aud_menu_kb() -> InlineKeyboardMarkup:
+-    aud_kb = InlineKeyboardMarkup()
+-    aud_kb.add(inl_btn1)
+-    aud_kb.add(inl_btn2)
+-    aud_kb.add(inl_btn3)
+-    aud_kb.add(inl_btn4)
+-    aud_kb.add(inl_btn5)
+-    aud_kb.add(inl_btn6)
+-    aud_kb.add(inl_btn7)
+-    aud_kb.add(inl_btn8)
+-    aud_kb.add(inl_btn9)
+-    aud_kb.add(inl_btn10)
+-    return aud_kb
+Index: src/handlers/inl_handler/aud_handler.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/handlers/inl_handler/aud_handler.py b/src/handlers/inl_handler/aud_handler.py
+new file mode 100644
+--- /dev/null	(date 1666615554772)
++++ b/src/handlers/inl_handler/aud_handler.py	(date 1666615554772)
+@@ -0,0 +1,12 @@
++from main import dp, bot
++
++from src.fsm.order_lesson import OrderLesson
++from src.fsm.menu_fsm import Menu
++from src.keyboards.menu_kb.menu_kb import MyKb
++from src.Role.users.user import User
++from src.db.db import MyDB
++
++from aiogram import types
++from aiogram.dispatcher import FSMContext
++
++
+diff --git a/src/configs/data_configs.py b/src/configs/data_configs.py
+new file mode 100644
